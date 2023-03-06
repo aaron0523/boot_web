@@ -1,0 +1,44 @@
+buildscript {
+    ext {
+        springbootVersion = '2.1.7.RELEASE'
+    }
+    repositories { // 각종 의존성 (라이브러리)들을 어떤 원격 저장소에서 받을지 결정
+        mavenCentral() // 기본
+    }
+    dependencies { // 프로젝트 개발에 필요한 의존성들을 선언
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}")
+    }
+
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' // 스프링 부트의 의존성을 관리해 주는 플러그인
+
+//plugins {
+//    id 'java'
+//}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+// gradle 7버전에서는 compile, testComplie 대신 implementation, testImplementation 사용
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    // 인텔리제이는 메이븐 저장소의 데이터를 인덱싱해서 관리해서 자동완성 기능이 가능
+    // 특정 버전을 명시하지 않아야 맨위에 ${springBootVersion}의 버전을 따라가게 됨
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    // lombok 설치
+    implementation('org.projectlombok:lombok')
+}
+
+test {
+    useJUnitPlatform()
+}
