@@ -29,11 +29,16 @@ repositories {
 
 // gradle 7버전에서는 compile, testComplie 대신 implementation, testImplementation 사용
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    testImplementation("org.junit.vintage:junit-vintage-engine") {
-        exclude group: "org.hamcrest", module: "hamcrest-core"
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5..1") {
+        exclude module:'junit-platform-commons'
     }
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.1")
+    testRuntimeOnly("org.junit.platform:junit-platform-engine:1.5.1")
+    testRuntimeOnly("org.junit.platform:junit-platform-commons:1.5.1")
+
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
     // 인텔리제이는 메이븐 저장소의 데이터를 인덱싱해서 관리해서 자동완성 기능이 가능
     // 특정 버전을 명시하지 않아야 맨위에 ${springBootVersion}의 버전을 따라가게 됨
     implementation('org.springframework.boot:spring-boot-starter-web')
