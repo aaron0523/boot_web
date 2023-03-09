@@ -65,6 +65,8 @@ dependencies {
     implementation('org.springframework.session:spring-session-jdbc')
     // 스프링 시큐리티 설정 때문에 인증되지 않은 사용자의 요청은 이동시키기 때문에 API 요청은 임의의 인증된 사용자를 추가하여 API 만 테스트해 볼 수 있도록 함
     testImplementation('org.springframework.security:spring-security-test')
+    // MariaDB 드라이버
+    implementation("org.mariadb.jdbc:mariadb-java-client")
 
 }
 
